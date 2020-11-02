@@ -1,0 +1,18 @@
+<div class="card my-5">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" #bookForm="ngForm">
+      <div class="form-group">
+        <label for="author">Author</label>
+        <input type="text" [(ngModel)]="book.author"
+               class="form-control"
+               id="author"
+               name="author"
+               placeholder="Enter the author"
+               required #author="ngModel">
+      </div>
+      <div [hidden]="!author.pristine" class="alert alert-danger">Author is required</div>
+      <button type="submit" [disabled]="!bookForm.form.valid"
+              class="btn btn-info">Submit</button>
+    </form>
+  </div>
+</div>
