@@ -3,14 +3,24 @@
     <table class="table table-bordered table-striped">
       <thead class="thead-dark">
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
+        <th scope="col">ISBN</th>
+        <th scope="col">Title</th>
+        <th scope="col">Pages</th>
+        <th scope="col">First Edition</th>
+        <th scope="col">Author(s)</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let book of books">
-        <td>{{ book.id }}</td>
-        <td>{{ book.author }}</td>
+        <td>{{ book.isbn }}</td>
+        <td>{{ book.title }}</td>
+        <td>{{ book.pages }}</td>
+        <td>{{ book.firstEdition | date:'dd/MM/yyyy' }}</td>
+        <td>
+          <div *ngFor="let author of book.authors">
+            {{ author.name}}
+          </div>
+        </td>
       </tr>
       </tbody>
     </table>

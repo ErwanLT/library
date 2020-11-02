@@ -1,14 +1,15 @@
 package fr.eletutour.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.time.Instant;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -18,20 +19,32 @@ import javax.persistence.Id;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private String isbn;
 
-    private String author;
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Author> authors;
 
-    public Book(String author){
-        this.author = author;
-    }
+    private String title;
+
+    private String genre;
+
+    private String editor;
+
+    private int pages;
+
+    private Instant firstEdition;
 
     @Override
     public String toString() {
         return "Book{" +
-                "id=" + id +
-                ", author='" + author + '\'' +
+                "isbn='" + isbn + '\'' +
+                ", authors=" + authors +
+                ", title='" + title + '\'' +
+                ", genre='" + genre + '\'' +
+                ", editor='" + editor + '\'' +
+                ", pages=" + pages +
+                ", firstEdition=" + firstEdition +
                 '}';
     }
 }

@@ -16,14 +16,4 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-    @Bean
-    CommandLineRunner init(BookRepository bookRepository) {
-        return args -> {
-            Stream.of("titi", "toto").forEach(name -> {
-                Book book = new Book(name);
-                bookRepository.save(book);
-            });
-            bookRepository.findAll().forEach(System.out::println);
-        };
-    }
 }
