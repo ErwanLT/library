@@ -15,8 +15,13 @@ export class BookListComponent implements OnInit {
 
   ngOnInit(): void {
     this.bookService.findAll().subscribe(data => {
-          this.books = data;
-        });
+        this.books = data;
+        this.books.forEach((book) => {
+          const base64image = book.cover;
+          const cover = 'data:image/jpeg;base64,' + base64image;
+          book.cover = cover;
+      });
+    });
   }
 
 }

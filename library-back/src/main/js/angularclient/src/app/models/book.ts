@@ -8,4 +8,5 @@ export class Book {
   editor: string;
   pages: number;
   firstEdition: any;
+  cover: any;
 }

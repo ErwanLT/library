@@ -2,15 +2,25 @@
   <div class="card-body">
     <form (ngSubmit)="onSubmit()" #bookForm="ngForm">
       <div class="form-group">
-        <label for="author">Author</label>
-        <input type="text" [(ngModel)]="book.author"
+        <label for="isbn">Author</label>
+        <input type="text" [(ngModel)]="book.isbn"
                class="form-control"
-               id="author"
-               name="author"
-               placeholder="Enter the author"
-               required #author="ngModel">
+               id="isbn"
+               name="isbn"
+               placeholder="Enter the ISBN"
+               required #isbn="ngModel">
       </div>
-      <div [hidden]="!author.pristine" class="alert alert-danger">Author is required</div>
+      <div [hidden]="!isbn.pristine" class="alert alert-danger">ISBN is required</div>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" [(ngModel)]="book.title"
+                class="form-control"
+                id="title"
+                name="title"
+                placeholder="Enter the title"
+                required #title="ngModel">
+      </div>
+      <div [hidden]="!title.pristine" class="alert alert-danger">ISBN is required</div>
       <button type="submit" [disabled]="!bookForm.form.valid"
               class="btn btn-info">Submit</button>
     </form>

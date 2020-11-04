@@ -8,6 +8,8 @@
         <th scope="col">Pages</th>
         <th scope="col">First Edition</th>
         <th scope="col">Author(s)</th>
+        <th scope="col">Cover</th>
+        <th></th>
       </tr>
       </thead>
       <tbody>
@@ -20,6 +22,14 @@
           <div *ngFor="let author of book.authors">
             {{ author.name}}
           </div>
+        </td>
+        <td>
+          <div *ngIf="book.cover">
+            <img src="{{book.cover}}">
+          </div>
+        </td>
+        <td>
+          <app-cover-upload-modal [book]="book"></app-cover-upload-modal>
         </td>
       </tr>
       </tbody>

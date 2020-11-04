@@ -6,17 +6,31 @@ import {Observable} from 'rxjs';
 @Injectable()
 export class BookService {
 
-  private usersUrl: string;
+  private bookUrl: string;
+  private coverUrl: string;
 
   constructor(private http: HttpClient) {
-    this.usersUrl = 'http://localhost:8080/books';
+    this.bookUrl = 'http://localhost:8080/books';
+    this.coverUrl = 'http://localhost:8080/cover';
   }
 
   public findAll(): Observable<Book[]> {
-    return this.http.get<Book[]>(this.usersUrl);
+    return this.http.get<Book[]>(this.bookUrl);
   }
 
   public save(book: Book) {
-    return this.http.post<Book>(this.usersUrl, book);
+    return this.http.post<Book>(this.bookUrl, book);
+  }
+
+  public addCover(file: FormData){
+    this.http.post(this.coverUrl, file, { observe: 'response' })
+      .subscribe((response) => {
+          if (response.status === 200) {
+            console.log('Image uploaded successfully');
+          } else {
+            console.log('Image not uploaded successfully');
+          }
+        }
+      );
   }
 }
